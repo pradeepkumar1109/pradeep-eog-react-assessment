@@ -1,7 +1,9 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Card, CardContent } from '@material-ui/core';
+import Headers from '../../components/Headers';
 import Header from './Header';
+import Graph from './Graph';
 
 import { client } from '../../App';
 import { useSubscription } from '@apollo/react-hooks';
@@ -210,8 +212,10 @@ export default () => {
 
   return (
     <Card className={classes.card}>
+      <Headers/>
       <Header metrics={metricStrings} selection={selection} setSelection={setSelection} latestData={latestData}/>
       <CardContent style={{ padding: 0 }}>
+        <Graph data={filteredData} />
       </CardContent>
     </Card>
   );
