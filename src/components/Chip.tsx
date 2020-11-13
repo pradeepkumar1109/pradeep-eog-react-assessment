@@ -3,7 +3,7 @@ import { withStyles, Theme } from '@material-ui/core/styles';
 
 const cardStyles = (theme: Theme) => ({
   root: {
-    background: theme.palette.secondary.main,
+    background: theme.palette.secondary.light,
   },
   label: {
     color: theme.palette.primary.main,

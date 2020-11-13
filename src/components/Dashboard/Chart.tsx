@@ -3,29 +3,23 @@ import Plot from 'react-plotly.js';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
-  plotArea: {
+  chart: {
     width: '100%',
     height: '100%',
   },
 });
 
-export default (props: { data: any[] }) => {
+export default (props: any) => {
   const classes = useStyles();
-  const { data } = props;
+  const tempPresent = props.data.filter((node: any) => node.yaxis === 'y').length > 1;
 
-  //workaround for limitation with Plotly - it was unable to display pressure and injValveOpen
-  //together without having temperature present.  This checks for if the user has passed actual temperature data to the
-  //chart, rather than just the dummy object.
-  const tempPresent = data.filter(node => node.yaxis === 'y').length > 1;
-
-  if (data.length > 1) {
+  if (props.data.length > 1) {
     return (
       <Plot
-        className={classes.plotArea}
-        data={data}
-        useResizeHandler={true}
+        className={classes.chart}
+        data={props.data}
         layout={{
-          margin: { t: 85, b: 80 },
+          margin: { t: 100, b: 100 },
           autosize: true,
           xaxis: { domain: [0.1, 1], fixedrange: true },
           yaxis: {
