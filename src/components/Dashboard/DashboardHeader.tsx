@@ -1,5 +1,6 @@
 import React from 'react';
-import { Button, Card, CardContent, Grid, makeStyles, Typography } from '@material-ui/core';
+import { Card, CardContent, Grid, makeStyles, Typography } from '@material-ui/core';
+import CardActionArea from '@material-ui/core/CardActionArea';
 
 const useStyles = makeStyles({
   header: {
@@ -44,34 +45,15 @@ const DashboardHeader = (props: any) => {
       <Grid container spacing={2}>
         {metrics.map((metric: string) => (
           <Grid item lg={2} md={2} sm={2} xs={12} key={metric}>
-            <Card>
+            <Card title="Click to Get Chart">
+            <CardActionArea onClick={() => handleToggle(metric)}> 
               <CardContent className={classes.headerContent}>
                 <Typography className={classes.mb8}>{metric}</Typography>
                 <Typography className={classes.mb8} variant="h5">
                   {getValue(metric)}
                 </Typography>
-                {selection.indexOf(metric) > -1 ? (
-                  <Button
-                    className={classes.mb8}
-                    size="small"
-                    variant="outlined"
-                    color="secondary"
-                    onClick={() => handleToggle(metric)}
-                  >
-                    Hide Data
-                  </Button>
-                ) : (
-                  <Button
-                    className={classes.mb8}
-                    size="small"
-                    variant="outlined"
-                    color="primary"
-                    onClick={() => handleToggle(metric)}
-                  >
-                    Show Data
-                  </Button>
-                )}
               </CardContent>
+              </CardActionArea>
             </Card>
           </Grid>
         ))}
